@@ -6,7 +6,7 @@
 	"scripts": {
 		"dev": "nodemon --watch \"src/**\" --ext \"ts,json\" --exec \"ts-node ./src/index.ts\"",
 		"build": "tsc",
-		"start": "node ./dist/index.js"
+		"start": "npx nodemon --exec ts-node --files ./src/index.ts"
 	},
 	"dependencies": {
 		"@types/cors": "^2.8.12",

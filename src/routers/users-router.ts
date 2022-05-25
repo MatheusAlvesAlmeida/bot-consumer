@@ -15,13 +15,13 @@ usersRouter.post("/usuario", (req, res) => {
   });
 });
 
-usersRouter.getAll("/usuario", (req, res) => {
+usersRouter.get("/usuario", (req, res) => {
   usersDAO.getAll((itens) => res.json(itens));
 });
 
-usersRouter.delete("/itens/:id", (req, res) => {
-  const id: number = +req.params.id;
-  usersDAO.delete(id, (notFound) => {
+usersRouter.delete("/usuario/:telefone", (req, res) => {
+  const telefone: string = req.params.telefone;
+  usersDAO.delete(telefone, (notFound) => {
     if (notFound) {
       res.status(404).send();
     } else {
@@ -31,7 +31,7 @@ usersRouter.delete("/itens/:id", (req, res) => {
 });
 
 usersRouter.get("/usuario/:telefone", (req, res) => {
-  const telefone: string = +req.params.telefone;
+  const telefone: string = req.params.telefone;
   usersDAO.get(telefone, (item) => {
     if (item) {
       res.json(item);

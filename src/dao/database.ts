@@ -20,7 +20,7 @@ const SQL_SUGGESTIONS_CREATE = `
         FOREIGN KEY (telefone_FK) REFERENCES usuario (telefone) 
     )`;
 
-const database = new sqlite3.Database(DBSOURCE, (err: { message: any }) => {
+const database = new sqlite3.Database(DBSOURCE, (err) => {
   if (err) {
     console.error(err.message);
     throw err;
