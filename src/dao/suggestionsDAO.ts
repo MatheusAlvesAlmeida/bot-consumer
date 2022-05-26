@@ -15,11 +15,14 @@ const suggestionsDAO = {
     });
   },
 
-  getAll: (telefone_FK: string, callback: (user?: suggestionModel) => void) => {
+  getAll: (
+    telefone_FK: string,
+    callback: (suggestions: suggestionModel[]) => void
+  ) => {
     const sql = "SELECT * FROM sugestoes WHERE telefone_FK = ?";
     const params = [telefone_FK];
-    database.get(sql, params, (_err: any, row: suggestionModel) =>
-      callback(row)
+    database.all(sql, params, (_err: any, rows: suggestionModel[]) =>
+      callback(rows)
     );
   },
 

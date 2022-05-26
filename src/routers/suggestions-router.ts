@@ -15,16 +15,17 @@ suggestionsRouter.post("/sugestoes", (req, res) => {
   });
 });
 
-suggestionsRouter.get(
-  "/sugestoes/:telefone",
-  (
-    req: { params: { telefone_FK: string } },
-    res: { json: (arg0: suggestionModel | undefined) => void }
-  ) => {
-    const telefone: string = req.params.telefone_FK;
-    suggestionsDAO.getAll(telefone, (itens) => res.json(itens));
-  }
-);
+suggestionsRouter.get("/sugestoes/:telefone", (req, res) => {
+  const telefone: string = req.params.telefone;
+  suggestionsDAO.getAll(telefone, (itens) => {
+    if (itens) {
+      console.log(itens);
+      res.json(itens);
+    } else {
+      res.status(404).send();
+    }
+  });
+});
 
 suggestionsRouter.delete("/sugestoes/:id", (req, res) => {
   const id: number = +req.params.id;

@@ -1,6 +1,5 @@
 export type suggestionModel = {
-  id?: number;
   telefone_fk: string;
-  assuntoSelecionado: string;
+  assuntoSelecionado: number;
   sugestao: string;
 };
