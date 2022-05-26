@@ -18,10 +18,10 @@ suggestionsRouter.post("/sugestoes", (req, res) => {
 suggestionsRouter.get(
   "/sugestoes/:telefone",
   (
-    req: { params: { telefone_FK: string | number } },
+    req: { params: { telefone_FK: string } },
     res: { json: (arg0: suggestionModel | undefined) => void }
   ) => {
-    const telefone: string = +req.params.telefone_FK;
+    const telefone: string = req.params.telefone_FK;
     suggestionsDAO.getAll(telefone, (itens) => res.json(itens));
   }
 );
