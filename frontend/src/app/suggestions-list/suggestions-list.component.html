@@ -1,10 +1,17 @@
 <mat-card>
   <mat-card-title>Lista de sugestões</mat-card-title>
-  <mat-card>
+  <mat-card *ngFor="let user of this.users">
     <mat-list>
-      <mat-list-item>
-        <mat-icon aria-hidden="false">delete</mat-icon>
-        Item 1
+      <div mat-subheader>Nome do usuário: {{ user.nome }}</div>
+      <div mat-subheader>Telefone do usuário: {{ user.telefone }}</div>
+      <div mat-subheader>Cidade do usuário: {{ user.cidade }}</div>
+      <br />
+      <mat-list-item *ngFor="let suggestion of this.allSuggestions">
+        <div *ngIf="suggestion.telefone_FK == user.telefone">
+          <p>Assunto selecionado: {{ suggestion.assuntoSelecionado }}</p>
+          <p>Sugestão: {{ suggestion.sugestao }}</p>
+          <br />
+        </div>
       </mat-list-item>
       <mat-divider></mat-divider>
     </mat-list>
