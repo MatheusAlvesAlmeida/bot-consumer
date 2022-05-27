@@ -19,7 +19,6 @@ suggestionsRouter.get("/sugestoes/:telefone", (req, res) => {
   const telefone: string = req.params.telefone;
   suggestionsDAO.getAll(telefone, (itens) => {
     if (itens) {
-      console.log(itens);
       res.json(itens);
     } else {
       res.status(404).send();
