@@ -10,15 +10,27 @@ import { Observable } from 'rxjs';
   styleUrls: ['./suggestions-list.component.css'],
 })
 export class SuggestionsListComponent implements OnInit {
-  constructor(private readonly appFacade: AppFacade) {}
+  users: userModel[] = [];
+  allSuggestions: suggestionModel[] = [];
 
-  users: Observable<userModel[]> | undefined;
-  allSuggestions = [];
-
-  ngOnInit(): void {
+  constructor(private readonly appFacade: AppFacade) {
     const allUsers = this.appFacade.getAllUsers();
     allUsers.subscribe((data) => {
-      console.log(data);
+      data.forEach((element) => {
+        if (element) {
+          this.users.push(element);
+          const userSuggestions = this.appFacade.getSuggestionsByUserPhone(
+            element.telefone
+          );
+          userSuggestions.subscribe((data) => {
+            data.forEach((element) => {
+              this.allSuggestions.push(element);
+            });
+          });
+        }
+      });
     });
   }
+
+  ngOnInit(): void {}
 }

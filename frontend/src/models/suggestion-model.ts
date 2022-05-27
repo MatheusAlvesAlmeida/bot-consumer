@@ -1,5 +1,6 @@
 export interface suggestionModel {
-  telefone_fk: string;
+  id: number;
+  telefone_FK: string;
   assuntoSelecionado: number;
   sugestao: string;
 }
